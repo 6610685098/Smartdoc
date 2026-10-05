@@ -1,0 +1,17 @@
+# Local environment files; keep templates versioned.
+.env*
+!.env.example
+
+# Dependencies and generated output.
+node_modules/
+.next/
+dist/
+build/
+out/
+coverage/
+*.tsbuildinfo
+
+# Logs and operating system files.
+*.log
+.DS_Store
+Thumbs.db
