@@ -299,11 +299,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Backend Connectivity Status */}
-        <div className="w-full">
-          <HealthStatus />
-        </div>
       </main>
     </div>
   );
