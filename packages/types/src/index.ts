@@ -91,3 +91,41 @@ export interface DocumentVariables {
   definitions: VariableDefinition[];
   values: Record<string, string | number | boolean | null>;
 }
+
+// ====================================================
+// AUTHENTICATION & USER CONTRACTS (FR-ACC-01)
+// ====================================================
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  fullName: string;
+  role: UserRole;
+  avatarUrl?: string | null;
+  createdAt: string;
+}
+
+export interface RegisterDto {
+  email: string;
+  password: string;
+  fullName: string;
+}
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  message: string;
+  user: AuthUser;
+}
+
+export interface CurrentUserResponse {
+  user: AuthUser;
+}
+
+export interface LogoutResponse {
+  message: string;
+}
+
