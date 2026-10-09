@@ -100,3 +100,44 @@ optimistic-mendel/
 * [ ] Did you verify that no unneeded `Organization` dependencies were introduced?
 * [ ] Are all foreign keys indexed with appropriate cascade behaviors?
 * [ ] Is error handling and logging in place for AI Gemini API calls?
+
+---
+
+## 6. Git Workflow & Branching Strategy
+
+### Branch Hierarchy & Protection
+* **`main` (Production)**:
+  * เก็บเฉพาะโค้ดที่ผ่านการทดสอบสมบูรณ์และพร้อมขึ้น Production เท่านั้น
+  * **STRICT RULE**: ห้าม commit หรือ push ตรงเข้า `main` เด็ดขาด (ยกเว้น hotfix ฉุกเฉินผ่าน PR)
+* **`develop` (Integration Branch)**:
+  * เป็น Base Branch หลักสำหรับการพัฒนาประจำวัน
+  * เป็นจุดรวม feature ต่างๆ ก่อนจะตัด Release ขึ้น `main`
+* **Working Branches (`feature/*`, `fix/*`, `refactor/*`)**:
+  * แตกออกจาก `develop` เสมอ
+  * เมื่อพัฒนาเสร็จ ให้ Merge หรือเปิด Pull Request กลับเข้า `develop`
+
+### Branch Naming Conventions
+* `feature/<scope-or-task>`: สำหรับการเพิ่มฟีเจอร์ใหม่ เช่น `feature/auth-ui`, `feature/doc-editor`
+* `fix/<issue-description>`: สำหรับการแก้บั๊กทั่วไป เช่น `fix/token-refresh`, `fix/table-alignment`
+* `refactor/<module>`: สำหรับการปรับโครงสร้างโค้ดโดยไม่เปลี่ยน behavior เช่น `refactor/prisma-client`
+* `hotfix/<critical-issue>`: เฉพาะกรณีแก้บักด่วนบน Production (แตกจาก `main` แล้ว merge กลับทั้ง `main` และ `develop`)
+
+### Strict Atomic Commit Standards
+* **Atomic Principle (1 Commit = 1 Logical Unit of Work)**:
+  * ทุก commit ต้องเป็น "หน่วยของงานที่เล็กที่สุดที่สมบูรณ์ในตัวเอง"
+  * **DO NOT BATCH**: ห้ามดองโค้ดทั้งฟีเจอร์แล้ว commit ทีเดียวเด็ดขาด (เช่น ห้ามมัดรวม Schema + Migration + API + UI + Refactor ใน commit เดียว)
+  * **Granular Decomposition**: ให้แยก commit เป็นแต่ละ checkpoint ที่ชัดเจนเสมอ เช่น:
+    1. `feat(db): add document template schema and migration`
+    2. `feat(backend): implement template CRUD service and controller`
+    3. `test(backend): add unit tests for template service`
+    4. `feat(frontend): create template selector dropdown component`
+* **Pre-commit Verification (Definition of "Pass")**: ก่อนจะรัน `git commit` ทุกครั้ง โค้ดใน commit นั้นต้องผ่านเกณฑ์:
+  1. **Build & Typecheck (Strict)**: รัน `bun run build` หรือ `tsc --noEmit` ผ่าน 100% ไม่มี TypeScript error ค้าง โค้ดคอมไพล์ได้ ไม่พัง syntax
+  2. **Backend Sanity Check (Agent Responsibility)**: หากแตะ API/Service ให้ Agent ทดสอบด้วย `curl` หรือ one-off script เล็กๆ ยืนยันว่า endpoint ตอบกลับ payload ถูกต้อง
+  3. **Frontend Sanity Check**: ยืนยันว่า components render ได้ ไม่ crash (ส่วน visual/layout ความสวยงามของเอกสารราชการให้ Developer ตรวจทาน)
+  4. **No Test Regressions**: หากไฟล์ที่แก้ไขมี test file อยู่แล้ว (`*.spec.ts`) ให้รัน `bun test <file>` ผ่านครบทุก case
+* **Conventional Commits Format**:
+  - โครงสร้าง: `<type>(<scope>): <short description in present tense>`
+  - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `chore`
+  - ตัวอย่าง: `feat(backend): implement refresh token endpoint`, `fix(frontend): handle empty document state`
+
