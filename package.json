@@ -1,0 +1,15 @@
+{
+  "name": "smartdoc",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "bun --cwd apps/backend start:dev",
+    "dev:frontend": "bun --cwd apps/frontend dev",
+    "build": "bun --filter \"*\" build",
+    "test": "bun --filter \"*\" test",
+    "lint": "bun --filter \"*\" lint"
+  }
+}
