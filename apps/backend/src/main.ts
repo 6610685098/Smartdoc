@@ -1,4 +1,6 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
 import { existsSync } from 'node:fs';
 import { loadEnvFile } from 'node:process';
 import { AppModule } from './app.module.js';
@@ -10,10 +12,25 @@ async function bootstrap() {
   }
 
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix(process.env.API_PREFIX ?? 'api');
+
+  app.use(cookieParser());
+
   app.enableCors({
     origin: process.env.CORS_ORIGIN ?? 'http://localhost:3000',
+    credentials: true,
   });
-  await app.listen(Number(process.env.PORT ?? 3001));
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+    }),
+  );
+
+  app.setGlobalPrefix(process.env.API_PREFIX ?? 'api');
+
+  const port = Number(process.env.PORT ?? 3001);
+  await app.listen(port);
+  console.log(`Smartdoc Backend running on port ${port}`);
 }
 await bootstrap();
