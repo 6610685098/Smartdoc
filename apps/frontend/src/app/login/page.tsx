@@ -100,7 +100,13 @@ export default function LoginPage() {
       <div className="w-full max-w-4xl lg:max-w-5xl bg-white rounded-3xl border border-[#dce5f2] shadow-[0_8px_30px_rgba(18,59,122,0.08)] overflow-hidden grid grid-cols-1 md:grid-cols-2">
         
         {/* Left Hero Section (Desktop & Tablet) */}
-        <section className="relative hidden md:flex flex-col justify-between p-8 lg:p-10 bg-gradient-to-br from-[#c8eafb] via-[#bfe3f9] to-[#b3ddf6] overflow-hidden select-none">
+        <section
+          className="relative hidden md:flex flex-col justify-between p-8 lg:p-10 overflow-hidden select-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 90% 70% at 85% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(225, 243, 253, 0.65) 45%, rgba(188, 227, 250, 0.95) 100%), linear-gradient(160deg, #eaf6fd 0%, #d4effc 50%, #b8e3fa 100%)',
+          }}
+        >
           {/* Background Dot Pattern */}
           <div
             className="absolute inset-0 opacity-40 pointer-events-none"
@@ -136,10 +142,11 @@ export default function LoginPage() {
             <Image
               src="/ai-document.png"
               alt="NCSA Smartdoc AI Document"
-              width={280}
-              height={280}
+              width={1024}
+              height={1024}
               priority
-              className="w-56 sm:w-64 lg:w-72 h-auto object-contain drop-shadow-sm select-none"
+              unoptimized
+              className="w-56 sm:w-64 lg:w-72 h-auto object-contain select-none"
             />
           </div>
 
@@ -158,7 +165,13 @@ export default function LoginPage() {
         </section>
 
         {/* Mobile Header Branding (visible only on small screens) */}
-        <div className="md:hidden flex flex-col items-center text-center p-6 bg-gradient-to-br from-[#c8eafb] via-[#bfe3f9] to-[#b3ddf6] relative overflow-hidden select-none">
+        <div
+          className="md:hidden flex flex-col items-center text-center p-6 relative overflow-hidden select-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 90% 70% at 85% 0%, rgba(255, 255, 255, 0.85) 0%, rgba(225, 243, 253, 0.65) 45%, rgba(188, 227, 250, 0.95) 100%), linear-gradient(160deg, #eaf6fd 0%, #d4effc 50%, #b8e3fa 100%)',
+          }}
+        >
           <div
             className="absolute inset-0 opacity-40 pointer-events-none"
             style={{
@@ -175,10 +188,11 @@ export default function LoginPage() {
             <Image
               src="/ai-document.png"
               alt="NCSA Smartdoc AI Document"
-              width={160}
-              height={160}
+              width={1024}
+              height={1024}
               priority
-              className="w-36 h-auto object-contain drop-shadow-sm"
+              unoptimized
+              className="w-36 h-auto object-contain select-none"
             />
           </div>
           <p className="relative z-10 text-xs font-semibold text-[#0f2d59]">
