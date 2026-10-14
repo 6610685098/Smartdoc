@@ -129,3 +129,62 @@ export interface LogoutResponse {
   message: string;
 }
 
+// ====================================================
+// DOCUMENT & ACCESS CONTRACTS (FR-ACC-01)
+// ====================================================
+
+export interface DocumentTypeDto {
+  id: string;
+  code: string;
+  nameTh: string;
+  nameEn?: string | null;
+  description?: string | null;
+  icon?: string | null;
+  sortOrder: number;
+  isActive: boolean;
+}
+
+export interface TemplateSummaryDto {
+  id: string;
+  title: string;
+  description?: string | null;
+  thumbnailUrl?: string | null;
+}
+
+export interface DocumentDto {
+  id: string;
+  userId: string;
+  documentTypeId: string;
+  templateId?: string | null;
+  title: string;
+  status: DocumentStatus;
+  content: AstBlock[];
+  variables: DocumentVariables;
+  currentVersionNumber: number;
+  deletedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  documentType?: DocumentTypeDto;
+  template?: TemplateSummaryDto | null;
+}
+
+export interface CreateDocumentRequest {
+  documentTypeId: string;
+  templateId?: string;
+  title?: string;
+  content?: AstBlock[];
+  variables?: DocumentVariables;
+}
+
+export interface UpdateDocumentRequest {
+  title?: string;
+  status?: DocumentStatus;
+  content?: AstBlock[];
+  variables?: DocumentVariables;
+}
+
+export interface DocumentListQuery {
+  status?: DocumentStatus;
+  search?: string;
+}
+
