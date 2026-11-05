@@ -37,7 +37,7 @@ export default function HomePage() {
     <nav aria-label="แถบนำทางตำแหน่ง" className="flex items-center gap-2 text-sm text-muted-foreground">
       <Link
         href="/"
-        className="flex items-center gap-1.5 font-medium hover:text-primary transition-colors text-foreground"
+        className="flex items-center gap-1.5 font-bold hover:text-primary transition-colors text-foreground"
         aria-current="page"
       >
         <Home className="h-4 w-4" aria-hidden="true" />
