@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Home } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { AppShell } from '@/components/app-shell/app-shell';
 import { HeroBanner, RecentAnnouncements } from '@/components/home';
@@ -30,9 +32,23 @@ export default function HomePage() {
     );
   }
 
+  // Breadcrumb navigation for Home (/)
+  const breadcrumbNode = (
+    <nav aria-label="แถบนำทางตำแหน่ง" className="flex items-center gap-2 text-sm text-muted-foreground">
+      <Link
+        href="/"
+        className="flex items-center gap-1.5 font-medium hover:text-primary transition-colors text-foreground"
+        aria-current="page"
+      >
+        <Home className="h-4 w-4" aria-hidden="true" />
+        <span>หน้าหลัก</span>
+      </Link>
+    </nav>
+  );
+
   // Authenticated Home Dashboard
   return (
-    <AppShell active="home" title="หน้าหลัก">
+    <AppShell active="home" title="หน้าหลัก" breadcrumb={breadcrumbNode}>
       <div className="space-y-8">
         <HeroBanner user={user} />
         <RecentAnnouncements />
