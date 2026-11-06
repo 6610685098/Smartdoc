@@ -89,11 +89,11 @@ export function RecentAnnouncements() {
   }, [documents]);
 
   return (
-    <section id="recent-announcements" aria-label="ประกาศล่าสุด" className="space-y-4">
+    <section id="recent-announcements" aria-label="เอกสารล่าสุด" className="space-y-4">
       {/* Section Header */}
       <div className="flex items-baseline justify-between">
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-          ประกาศล่าสุด
+          เอกสารล่าสุด
         </h2>
         {!isLoading && !error && (
           <span className="text-xs sm:text-sm text-muted-foreground font-medium">
@@ -113,20 +113,20 @@ export function RecentAnnouncements() {
 
       {!isLoading && !error && sortedDocuments.length === 0 && (
         <EmptyState
-          title="ยังไม่มีประกาศ"
-          description="เริ่มสร้างประกาศฉบับแรกของคุณได้เลย"
+          title="ยังไม่มีเอกสาร"
+          description="เริ่มสร้างเอกสารฉบับแรกของคุณได้เลย"
           showCreateButton={true}
         />
       )}
 
       {!isLoading && !error && sortedDocuments.length > 0 && (
-        <div className="space-y-3" role="feed" aria-label="รายการประกาศล่าสุด">
+        <div className="space-y-3" role="feed" aria-label="รายการเอกสารล่าสุด">
           {sortedDocuments.map((doc) => (
             <div
               key={doc.id}
               className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4 sm:p-5 shadow-2xs transition-shadow hover:shadow-xs"
               role="article"
-              aria-label={`ประกาศ: ${doc.title}`}
+              aria-label={`เอกสาร: ${doc.title}`}
             >
               {/* Left: Document Icon & Details */}
               <div className="flex items-center gap-4 min-w-0 flex-1">
@@ -147,7 +147,7 @@ export function RecentAnnouncements() {
 
                   <div className="flex flex-wrap items-center gap-2.5 text-xs text-muted-foreground">
                     <span className="inline-flex items-center rounded-full bg-accent-soft px-2.5 py-0.5 text-[11px] font-semibold text-[#066A7A]">
-                      {doc.documentType?.nameTh || 'ประกาศ'}
+                      {doc.documentType?.nameTh || 'เอกสาร'}
                     </span>
 
                     <span className="text-muted-foreground font-normal">

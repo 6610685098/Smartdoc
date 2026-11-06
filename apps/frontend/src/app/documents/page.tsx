@@ -108,7 +108,7 @@ export default function DocumentsPage() {
         {/* Page header and template selection entry point */}
         <PageHeader
           title="เอกสารของฉัน"
-          description="รายการเอกสารราชการและประกาศทั้งหมดของคุณในระบบสารบรรณ"
+          description="รายการเอกสารราชการทั้งหมดของคุณในระบบสารบรรณ"
           badge={
             isOverallLoading ? (
               <Badge variant="outline" className="text-xs animate-pulse">
@@ -137,7 +137,7 @@ export default function DocumentsPage() {
         ) : documents.length === 0 ? (
           <EmptyState
             title="ยังไม่มีเอกสารในระบบ"
-            description="คุณยังไม่มีเอกสารราชการหรือประกาศที่สร้างไว้ เอกสารจะปรากฏที่นี่เมื่อเริ่มสร้าง"
+            description="เริ่มสร้างเอกสารฉบับแรกของคุณได้เลย"
             showCreateButton={true}
           />
         ) : (

@@ -38,7 +38,7 @@ function formatThaiDateTime(dateString?: string): string {
  * STRICT REQUIREMENT: Read-only presentation only — no onClick, no editor links, no open buttons.
  */
 export function DocumentCard({ document }: DocumentCardProps) {
-  const documentTypeName = document.documentType?.nameTh || 'ประกาศ';
+  const documentTypeName = document.documentType?.nameTh || 'เอกสาร';
   const lastUpdatedThai = formatThaiDateTime(document.updatedAt || document.createdAt);
 
   return (
