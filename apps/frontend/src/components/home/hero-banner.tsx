@@ -2,9 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Plus } from 'lucide-react';
 import type { AuthUser } from '@smartdoc/types';
-import { Button } from '@/components/ui/button';
+import { CreateAnnouncementLink } from '@/components/documents/create-announcement-link';
 import { HeroArtwork } from './hero-artwork';
 
 export interface HeroBannerProps {
@@ -32,42 +31,23 @@ export function HeroBanner({ user }: HeroBannerProps) {
         {/* Left column: Text & Actions */}
         <div className="flex flex-col items-start lg:col-span-7 xl:col-span-8">
           {/* Badge / Chip */}
-          <span className="inline-flex items-center rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-[#066A7A]">
-            Smart Back Office สำหรับงานเอกสาร
-          </span>
 
           {/* Greeting & Headline */}
           <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-primary sm:text-3xl lg:text-4xl leading-snug">
             สวัสดี คุณ{user.fullName}
             <span className="mt-1 block text-lg sm:text-xl lg:text-2xl font-bold text-foreground">
-              วันนี้อยากเริ่มประกาศเรื่องอะไร
+              วันนี้ต้องการสร้างเอกสารอะไร
             </span>
           </h1>
 
           {/* Description */}
           <p className="mt-3.5 max-w-xl text-sm sm:text-base leading-relaxed text-muted-foreground">
-            บอกข้อเท็จจริงสำคัญ แล้วให้ AI ช่วยร่างเนื้อหาประกาศภาษาไทย คุณตรวจทานและแก้ไขได้เองก่อนส่งออก
+            เริ่มต้นจากเอกสารเปล่าหรือเลือกเทมเพลตเอกสารราชการ พร้อมให้ AI ช่วยร่างเนื้อหา และตรวจทานด้วยตนเองก่อนนำไปใช้
           </p>
 
           {/* Action buttons */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {/* Create Announcement Button (Disabled in this phase) */}
-            <div className="relative">
-              <Button
-                type="button"
-                disabled
-                aria-disabled="true"
-                aria-describedby="hero-create-desc"
-                title="ฟังก์ชันสร้างประกาศยังอยู่นอกขอบเขตในรอบนี้"
-                className="h-11 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-xs opacity-60 cursor-not-allowed hover:bg-primary"
-              >
-                <Plus className="h-4 w-4 mr-1 shrink-0" aria-hidden="true" />
-                <span>สร้างประกาศใหม่</span>
-              </Button>
-              <span id="hero-create-desc" className="sr-only">
-                ฟังก์ชันสร้างประกาศใหม่ยังไม่อยู่ในขอบเขตการทำงานรอบนี้
-              </span>
-            </div>
+            <CreateAnnouncementLink className="h-11 rounded-xl px-5" />
 
             {/* View My Documents Link */}
             <Link

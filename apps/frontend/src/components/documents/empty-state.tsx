@@ -1,6 +1,6 @@
 import React from 'react';
-import { FileText, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { FileText } from 'lucide-react';
+import { CreateAnnouncementLink } from '@/components/documents/create-announcement-link';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
@@ -34,23 +34,7 @@ export function EmptyState({
       </p>
 
       {showCreateButton && (
-        <div className="flex flex-col items-center gap-2">
-          <Button
-            disabled
-            aria-disabled="true"
-            aria-describedby="create-doc-explanation"
-            className="gap-2 cursor-not-allowed opacity-60"
-          >
-            <Plus className="h-4 w-4" aria-hidden="true" />
-            <span>สร้างประกาศใหม่</span>
-          </Button>
-          <span
-            id="create-doc-explanation"
-            className="text-xs text-muted-foreground"
-          >
-            (ฟังก์ชันสร้างประกาศฉบับใหม่ยังไม่เปิดให้บริการในรอบนี้)
-          </span>
-        </div>
+        <CreateAnnouncementLink />
       )}
     </Card>
   );
