@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Home, FileText, Plus, LogOut } from 'lucide-react';
+import { Home, FileText, LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { CreateAnnouncementLink } from '@/components/documents/create-announcement-link';
 
 export interface AppShellProps {
   children: React.ReactNode;
@@ -62,21 +63,8 @@ export function AppShell({
 
         {/* Action & Navigation */}
         <div className="flex flex-1 flex-col gap-1 p-3 overflow-y-auto">
-          {/* Create Announcement Button (Disabled in this phase) */}
           <div className="mb-3 px-1">
-            <Button
-              type="button"
-              disabled
-              aria-disabled="true"
-              title="ฟังก์ชันสร้างประกาศยังไม่อยู่ในขอบเขตการทำงานรอบนี้"
-              className="w-full justify-start gap-2.5 bg-primary text-primary-foreground font-semibold shadow-xs opacity-60 cursor-not-allowed hover:bg-primary"
-            >
-              <Plus className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span>สร้างประกาศ</span>
-            </Button>
-            <p className="mt-1 text-[11px] text-muted-foreground px-1 leading-tight">
-              (ยังไม่เปิดให้บริการในรอบนี้)
-            </p>
+            <CreateAnnouncementLink className="w-full justify-start gap-2.5" />
           </div>
 
           <nav className="flex flex-col gap-1" aria-label="แถบนำทาง">

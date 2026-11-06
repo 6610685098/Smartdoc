@@ -2,9 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Plus } from 'lucide-react';
 import type { AuthUser } from '@smartdoc/types';
-import { Button } from '@/components/ui/button';
+import { CreateAnnouncementLink } from '@/components/documents/create-announcement-link';
 import { HeroArtwork } from './hero-artwork';
 
 export interface HeroBannerProps {
@@ -51,23 +50,7 @@ export function HeroBanner({ user }: HeroBannerProps) {
 
           {/* Action buttons */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {/* Create Announcement Button (Disabled in this phase) */}
-            <div className="relative">
-              <Button
-                type="button"
-                disabled
-                aria-disabled="true"
-                aria-describedby="hero-create-desc"
-                title="ฟังก์ชันสร้างประกาศยังอยู่นอกขอบเขตในรอบนี้"
-                className="h-11 rounded-xl bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-xs opacity-60 cursor-not-allowed hover:bg-primary"
-              >
-                <Plus className="h-4 w-4 mr-1 shrink-0" aria-hidden="true" />
-                <span>สร้างประกาศใหม่</span>
-              </Button>
-              <span id="hero-create-desc" className="sr-only">
-                ฟังก์ชันสร้างประกาศใหม่ยังไม่อยู่ในขอบเขตการทำงานรอบนี้
-              </span>
-            </div>
+            <CreateAnnouncementLink className="h-11 rounded-xl px-5" />
 
             {/* View My Documents Link */}
             <Link

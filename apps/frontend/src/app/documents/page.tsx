@@ -3,10 +3,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Home, Plus } from 'lucide-react';
+import { Home } from 'lucide-react';
 import type { DocumentDto } from '@smartdoc/types';
 import { AppShell } from '@/components/app-shell/app-shell';
-import { Button } from '@/components/ui/button';
+import { CreateAnnouncementLink } from '@/components/documents/create-announcement-link';
 import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/documents/page-header';
 import { LoadingState } from '@/components/documents/loading-state';
@@ -105,7 +105,7 @@ export default function DocumentsPage() {
   return (
     <AppShell active="documents" title="เอกสารของฉัน" breadcrumb={breadcrumbNode}>
       <div className="space-y-6">
-        {/* Page Header with Total Count and Accessible Disabled 'Create Announcement' button */}
+        {/* Page header and template selection entry point */}
         <PageHeader
           title="เอกสารของฉัน"
           description="รายการเอกสารราชการและประกาศทั้งหมดของคุณในระบบสารบรรณ"
@@ -125,24 +125,7 @@ export default function DocumentsPage() {
             )
           }
           action={
-            <div className="flex flex-col items-stretch sm:items-end gap-1">
-              <Button
-                type="button"
-                disabled
-                aria-disabled="true"
-                aria-describedby="action-create-announcement-desc"
-                className="gap-2 cursor-not-allowed opacity-60 shadow-xs"
-              >
-                <Plus className="h-4 w-4" aria-hidden="true" />
-                <span>สร้างประกาศใหม่</span>
-              </Button>
-              <span
-                id="action-create-announcement-desc"
-                className="text-[11px] text-muted-foreground text-center sm:text-right"
-              >
-                (ฟังก์ชันสร้างประกาศยังไม่อยู่ในขอบเขตการทำงานรอบนี้)
-              </span>
-            </div>
+            <CreateAnnouncementLink />
           }
         />
 
